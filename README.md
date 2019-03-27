@@ -7,4 +7,4 @@ https://www.layui.com/demo/panel.html
 
 git add .
 git commit -m "message"
-git push -u master
+
