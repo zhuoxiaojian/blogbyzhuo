@@ -21,7 +21,8 @@ public class Article implements Serializable{
     private Long id;
     private String title;
     private String text;
-    private Integer browerCount;
+    private Integer browseCount;
+    private String imageUrl;
     private Date createTime;
 
     @ManyToOne(fetch = FetchType.LAZY)
@@ -58,13 +59,7 @@ public class Article implements Serializable{
         this.text = text;
     }
 
-    public Integer getBrowerCount() {
-        return browerCount;
-    }
 
-    public void setBrowerCount(Integer browerCount) {
-        this.browerCount = browerCount;
-    }
 
     public Date getCreateTime() {
         return createTime;
@@ -96,5 +91,21 @@ public class Article implements Serializable{
 
     public void setLabel(Label label) {
         this.label = label;
+    }
+
+    public Integer getBrowseCount() {
+        return browseCount;
+    }
+
+    public void setBrowseCount(Integer browseCount) {
+        this.browseCount = browseCount;
+    }
+
+    public String getImageUrl() {
+        return imageUrl;
+    }
+
+    public void setImageUrl(String imageUrl) {
+        this.imageUrl = imageUrl;
     }
 }
