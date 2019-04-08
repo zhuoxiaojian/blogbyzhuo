@@ -32,137 +32,137 @@ public class LoginController {
     //退出的时候是get请求，主要是用于退出
     @RequestMapping("/")
     public String login(){
-        return "login";
+        return "back/login";
     }
 
     @RequestMapping(value = "/index")
     public String index(){
-        return "index";
+        return "back/index";
     }
 
     @RequestMapping(value = "/welcome")
-    public String welcome(){ return "welcome"; }
+    public String welcome(){ return "back/welcome"; }
 
 
     //登出
     @RequestMapping(value = "/logout")
     public String logout(){
-        return "login";
+        return "back/login";
     }
 
     @RequestMapping(value = "/city")
     public String city(){
-        return "city";
+        return "back/city";
     }
 
     @RequestMapping(value="/admin-list")
     public String admin_list(){
-        return "admin-list";
+        return "back/admin-list";
     }
     @RequestMapping(value="/admin-rule")
     public String admin_rule(){
-        return "admin-rule";
+        return "back/admin-rule";
     }
     @RequestMapping(value="/admin-role")
     public String admin_role(){
-        return "admin-role";
+        return "back/admin-role";
     }
 
     @RequestMapping(value="/admin-edit")
     public String admin_edit(){
-        return "admin-edit";
+        return "back/admin-edit";
     }
 
     @RequestMapping(value="/admin-cate")
     public String admin_cate(){
-        return "admin-cate";
+        return "back/admin-cate";
     }
     @RequestMapping(value="/admin-add")
     public String admin_add(){
-        return "admin-add";
+        return "back/admin-add";
     }
 
     @RequestMapping(value="/cate")
     public String cate(){
-        return "cate";
+        return "back/cate";
     }
     @RequestMapping(value="/echarts1")
     public String echarts1(){
-        return "echarts1";
+        return "back/echarts1";
     }
     @RequestMapping(value="/echarts2")
     public String echarts2(){
-        return "echarts2";
+        return "back/echarts2";
     }
     @RequestMapping(value="/echarts3")
     public String echarts3(){
-        return "echarts3";
+        return "back/echarts3";
     }
     @RequestMapping(value="/echarts4")
     public String echarts4(){
-        return "echarts4";
+        return "back/echarts4";
     }
     @RequestMapping(value="/echarts5")
     public String echarts5(){
-        return "echarts5";
+        return "back/echarts5";
     }
     @RequestMapping(value="/echarts6")
     public String echarts6(){
-        return "echarts6";
+        return "back/echarts6";
     }
     @RequestMapping(value="/echarts7")
     public String echarts7(){
-        return "echarts7";
+        return "back/echarts7";
     }
     @RequestMapping(value="/echarts8")
     public String echarts8(){
-        return "echarts8";
+        return "back/echarts8";
     }
 
     @RequestMapping(value="/member-add")
     public String member_add(){
-        return "member-add";
+        return "back/member-add";
     }
 
     @RequestMapping(value="/member-del")
     public String member_del(){
-        return "member-del";
+        return "back/member-del";
     }
 
     @RequestMapping(value="/member-edit")
     public String member_edit(){
-        return "member-edit";
+        return "back/member-edit";
     }
     @RequestMapping(value="/member-list")
     public String member_list(){
-        return "member-list";
+        return "back/member-list";
     }
     @RequestMapping(value="/member-list1")
     public String member_list1(){
-        return "member-list1";
+        return "back/member-list1";
     }
 
     @RequestMapping(value="/member-password")
     public String member_password(){
-        return "member-password";
+        return "back/member-password";
     }
 
     @RequestMapping(value="/order-add")
     public String order_add(){
-        return "order-add";
+        return "back/order-add";
     }
     @RequestMapping(value="/order-list")
     public String order_list(){
-        return "order-list";
+        return "back/order-list";
     }
 
     @RequestMapping(value="/role-add")
     public String role_add(){
-        return "role-add";
+        return "back/role-add";
     }
     @RequestMapping(value="/unicode")
     public String unicode(){
-        return "unicode";
+        return "back/unicode";
     }
 
 
