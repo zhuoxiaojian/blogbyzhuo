@@ -1,5 +1,7 @@
 package com.nisure.domain;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+
 import javax.persistence.*;
 import java.io.Serializable;
 
@@ -11,13 +13,16 @@ import java.io.Serializable;
  * Time: 11:26
  */
 @Entity
+@JsonIgnoreProperties(ignoreUnknown = true, value =
+        {"hibernateLazyInitializer", "handler", "fieldHandler"})
 public class Permission implements Serializable{
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
     private String permission;
 
-    @ManyToOne(fetch = FetchType.EAGER)
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "role_id")
     private Role role;
 
     public void setId(Long id) {

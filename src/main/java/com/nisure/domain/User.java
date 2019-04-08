@@ -1,8 +1,10 @@
 package com.nisure.domain;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+
 import javax.persistence.*;
 import java.io.Serializable;
-import java.util.List;
+import java.util.Set;
 
 /**
  * Created with IntelliJ IDEA.
@@ -12,6 +14,8 @@ import java.util.List;
  * Time: 11:08
  */
 @Entity
+@JsonIgnoreProperties(ignoreUnknown = true, value =
+        {"hibernateLazyInitializer", "handler", "fieldHandler"})
 public class User implements Serializable{
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
@@ -20,12 +24,15 @@ public class User implements Serializable{
     private String name;
     @Column(name="password")
     private String password;
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "user")
-    private List<Role> roles;
+
+    @JsonIgnoreProperties(value = { "user" })
+    @OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL, mappedBy = "user")
+    private Set<Role> roles;
 
     //一个用户可以有多篇文章
+    @JsonIgnoreProperties(value = { "user" })
     @OneToMany( fetch = FetchType.LAZY, mappedBy = "user", cascade = CascadeType.ALL)
-    private List<Article> articles;
+    private Set<Article> articles;
 
     public void setId(Long id) {
         this.id = id;
@@ -51,19 +58,19 @@ public class User implements Serializable{
         return password;
     }
 
-    public void setRoles(List<Role> roles) {
+    public void setRoles(Set<Role> roles) {
         this.roles = roles;
     }
 
-    public List<Role> getRoles() {
+    public Set<Role> getRoles() {
         return roles;
     }
 
-    public List<Article> getArticles() {
+    public Set<Article> getArticles() {
         return articles;
     }
 
-    public void setArticles(List<Article> articles) {
+    public void setArticles(Set<Article> articles) {
         this.articles = articles;
     }
 }

@@ -1,8 +1,11 @@
 package com.nisure.domain;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+
 import javax.persistence.*;
 import java.io.Serializable;
 import java.util.List;
+import java.util.Set;
 
 /**
  * Created with IntelliJ IDEA.
@@ -12,6 +15,8 @@ import java.util.List;
  * Time: 11:11
  */
 @Entity
+@JsonIgnoreProperties(ignoreUnknown = true, value =
+        {"hibernateLazyInitializer", "handler", "fieldHandler"})
 public class Role implements Serializable{
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
@@ -19,10 +24,13 @@ public class Role implements Serializable{
 
     private String roleName;
 
-    @ManyToOne(fetch = FetchType.EAGER)
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name="user_id")
     private User user;
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "role")
-    private List<Permission> permissions;
+
+    @OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL, mappedBy = "role")
+    @JsonIgnoreProperties(value = { "role" })
+    private Set<Permission> permissions;
 
     public void setId(Long id) {
         this.id = id;
@@ -48,11 +56,11 @@ public class Role implements Serializable{
         return user;
     }
 
-    public void setPermissions(List<Permission> permissions) {
+    public void setPermissions(Set<Permission> permissions) {
         this.permissions = permissions;
     }
 
-    public List<Permission> getPermissions() {
+    public Set<Permission> getPermissions() {
         return permissions;
     }
 }

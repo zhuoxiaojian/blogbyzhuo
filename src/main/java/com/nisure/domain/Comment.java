@@ -1,5 +1,7 @@
 package com.nisure.domain;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+
 import javax.persistence.*;
 import java.io.Serializable;
 import java.util.Date;
@@ -13,6 +15,8 @@ import java.util.Date;
  * 评论表
  */
 @Entity
+@JsonIgnoreProperties(ignoreUnknown = true, value =
+        {"hibernateLazyInitializer", "handler", "fieldHandler"})
 public class Comment implements Serializable{
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
@@ -23,6 +27,7 @@ public class Comment implements Serializable{
     private String auth;
 
     @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "article_id")
     private Article article;
 
     private Date createTime;

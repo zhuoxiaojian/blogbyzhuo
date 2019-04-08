@@ -15,6 +15,4 @@ import java.util.Map;
 public interface ILoginService{
  public User findByName(String name);
  public User checkUser(String name, String password);
- public User addUser(Map<String, Object> map);
- public Role addRole(Map<String, Object> map);
 }

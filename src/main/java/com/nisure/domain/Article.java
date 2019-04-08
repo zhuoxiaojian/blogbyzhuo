@@ -1,9 +1,11 @@
 package com.nisure.domain;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+
 import javax.persistence.*;
 import java.io.Serializable;
 import java.util.Date;
-import java.util.List;
+import java.util.Set;
 
 
 /**
@@ -15,6 +17,8 @@ import java.util.List;
  * 文章表
  */
 @Entity
+@JsonIgnoreProperties(ignoreUnknown = true, value =
+        {"hibernateLazyInitializer", "handler", "fieldHandler"})
 public class Article implements Serializable{
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
@@ -26,12 +30,15 @@ public class Article implements Serializable{
     private Date createTime;
 
     @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "user_id")
     private User user;
 
     @OneToMany( fetch = FetchType.LAZY, mappedBy = "article", cascade = CascadeType.ALL)
-    private List<Comment> comments;
+    @JsonIgnoreProperties(value = { "article" })
+    private Set<Comment> comments;
 
     @OneToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "label_id")
     private Label label;
 
 
@@ -77,11 +84,11 @@ public class Article implements Serializable{
         this.user = user;
     }
 
-    public List<Comment> getComments() {
+    public Set<Comment> getComments() {
         return comments;
     }
 
-    public void setComments(List<Comment> comments) {
+    public void setComments(Set<Comment> comments) {
         this.comments = comments;
     }
 
