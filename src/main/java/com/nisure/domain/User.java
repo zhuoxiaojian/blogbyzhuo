@@ -23,6 +23,10 @@ public class User implements Serializable{
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "user")
     private List<Role> roles;
 
+    //一个用户可以有多篇文章
+    @OneToMany( fetch = FetchType.LAZY, mappedBy = "user", cascade = CascadeType.ALL)
+    private List<Article> articles;
+
     public void setId(Long id) {
         this.id = id;
     }
@@ -53,5 +57,13 @@ public class User implements Serializable{
 
     public List<Role> getRoles() {
         return roles;
+    }
+
+    public List<Article> getArticles() {
+        return articles;
+    }
+
+    public void setArticles(List<Article> articles) {
+        this.articles = articles;
     }
 }
