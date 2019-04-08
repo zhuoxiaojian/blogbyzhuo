@@ -5,6 +5,8 @@ import com.nisure.service.ILoginService;
 import com.nisure.util.ResultData;
 import org.apache.shiro.SecurityUtils;
 import org.apache.shiro.authc.UsernamePasswordToken;
+import org.apache.shiro.authz.annotation.RequiresPermissions;
+import org.apache.shiro.authz.annotation.RequiresRoles;
 import org.apache.shiro.subject.Subject;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -43,5 +45,13 @@ public class IndexController {
         //进行验证，这里可以捕获异常，然后返回对应信息
         subject.login(usernamePasswordToken);
         return ResultData.ok().put("message", "登录成功").put("status", 1);
+    }
+
+    //注解的使用
+    @RequiresRoles("admin")
+    @RequiresPermissions("create")
+    @RequestMapping(value = "/create")
+    public String create(){
+        return "Create success!";
     }
 }
