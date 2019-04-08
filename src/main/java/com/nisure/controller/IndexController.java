@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
+import java.util.List;
 import java.util.Map;
 
 /**
@@ -53,5 +54,12 @@ public class IndexController {
     @RequestMapping(value = "/create")
     public String create(){
         return "Create success!";
+    }
+
+    @RequestMapping(value = "/getAllUsers")
+    public ResultData getAllUsers(){
+        List<User> list = loginService.findAllList(0, 10);
+        Integer count = loginService.countAllList();
+        return ResultData.ok().put("rows", list).put("total", count);
     }
 }

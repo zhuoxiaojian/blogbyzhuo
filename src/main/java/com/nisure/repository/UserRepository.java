@@ -3,6 +3,8 @@ package com.nisure.repository;
 import com.nisure.domain.User;
 import org.springframework.data.jpa.repository.Query;
 
+import java.util.List;
+
 /**
  * Created with IntelliJ IDEA.
  * Description:
@@ -19,4 +21,12 @@ public interface UserRepository extends BaseRepository<User, Long> {
 
     //属性方法 findBy + 属性
     public User findByNameAndPassword(String name, String password);
+
+    @Query(value ="select c.* from user c "
+            + "order by c.id desc limit ?1, ?2 ", nativeQuery = true)
+    List<User> findAllList(Integer pageNumber, Integer pageSize);
+
+    @Query(value ="select count(*) from user c "
+            + "order by c.id desc ",nativeQuery = true)
+    Integer countAllList();
 }

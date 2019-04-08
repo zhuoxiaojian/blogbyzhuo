@@ -38,4 +38,14 @@ public class LoginServiceImpl implements ILoginService {
     public User checkUser(String name, String password) {
         return userRepository.findByNameAndPassword(name, password);
     }
+
+    @Override
+    public List<User> findAllList(Integer pageNumber, Integer pageSize) {
+        return userRepository.findAllList(pageNumber, pageSize);
+    }
+
+    @Override
+    public Integer countAllList() {
+        return userRepository.countAllList();
+    }
 }

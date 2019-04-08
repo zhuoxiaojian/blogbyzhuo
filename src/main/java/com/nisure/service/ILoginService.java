@@ -3,6 +3,7 @@ package com.nisure.service;
 import com.nisure.domain.Role;
 import com.nisure.domain.User;
 
+import java.util.List;
 import java.util.Map;
 
 /**
@@ -15,4 +16,6 @@ import java.util.Map;
 public interface ILoginService{
  public User findByName(String name);
  public User checkUser(String name, String password);
+ List<User> findAllList(Integer pageNumber, Integer pageSize);
+ Integer countAllList();
 }
